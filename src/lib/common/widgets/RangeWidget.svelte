@@ -1,15 +1,14 @@
 <script lang="ts">
-    import { camera } from '../lib/E2Camera';
-    import type { RangeSetting } from '../types/settings';
+    import { camera } from '../../E2Camera';
+    import type { RangeSettings } from '../../../types/settings';
     
-    export let setting: RangeSetting;
+    export let setting: RangeSettings;
     export let name: string;
-    let { value, min, max, key } = setting;
+    let { value, min, max, key, step } = setting;
 </script>
 
-<div>
-    <h3>{name}</h3>
-
+<div class="widget">
+    <h5>{name}</h5>
     <input
         on:change={(selected) => {
             camera.set(key, selected.currentTarget.value);
@@ -19,6 +18,7 @@
         id=""
         {min}
         {max}
+        {step}
         bind:value />
     <div>{value}</div>
 </div>

@@ -1,4 +1,4 @@
-export interface Setting {
+export interface Settings {
     code?: number;
     desc?: string;
     key?: string;
@@ -7,12 +7,11 @@ export interface Setting {
     value: string | number;
 }
 
-export interface ChoiseSetting extends Setting {
-  
+export interface ChoiseSettings extends Settings {
     opts: string[];
 }
 
-export interface RangeSetting extends Setting {
+export interface RangeSettings extends Settings {
     min: number;
     max: number;
     step: number;

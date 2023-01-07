@@ -1,8 +1,18 @@
 <script lang="ts">
-    import CameraInformation from './lib/CameraInformation/CameraInformation.svelte'
-    import PanTilt from './lib/PanTilt/PanTilt.svelte'
-    import Settings from './lib/Settings/Settings.svelte'
-    import WorkingMode from './lib/WorkingMode/WorkingMode.svelte'
+    import CameraInformation from './lib/CameraInformation/CameraInformation.svelte';
+    import { camera } from './lib/E2Camera';
+    import PanTilt from './lib/PanTilt/PanTilt.svelte';
+    import Settings from './lib/Settings/Settings.svelte';
+    import WorkingMode from './lib/WorkingMode/WorkingMode.svelte';
+    import { cameraSettings } from './store';
+
+    cameraSettings.update(async (previousState) => {
+        try {
+            return await camera.getAll(previousState);
+        } catch {
+            return previousState;
+        }
+    });
 </script>
 
 <main>

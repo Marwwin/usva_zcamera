@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Button from '../../common/Button.svelte'
+    import Button from '../common/Button.svelte'
     import { camera } from '../E2Camera'
     let result: any | null = null
 </script>

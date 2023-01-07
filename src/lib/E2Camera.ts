@@ -45,4 +45,9 @@ export const camera = {
     set: async (key: string, value: string) =>
         await fetch(`${CAMERA_IP}ctrl/set?${key}=${value}`),
     get: async (key: string) => await fetch(`${CAMERA_IP}ctrl/get?k=${key}`),
+    getAll: (cameraSettings: Record<string, unknown>) =>
+        Object.keys(cameraSettings).map(async (key) => {
+            const result = await fetch(`${CAMERA_IP}ctrl/get?k=${key}`);
+            return result.json();
+        }),
 };

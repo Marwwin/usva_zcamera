@@ -1,15 +1,14 @@
 <script lang="ts">
-    import { camera } from '../lib/E2Camera';
-    import type { ChoiseSetting } from '../types/settings';
+    import { camera } from '../../E2Camera';
+    import type { ChoiseSettings } from '../../../types/settings';
 
     export let name;
-    export let setting: ChoiseSetting;
+    export let setting: ChoiseSettings;
     const { key, opts, value } = setting;
 </script>
 
-<div>
-    <h3>{name}</h3>
-
+<div class="widget">
+    <h5>{name}</h5>
     <select
         on:change={(selected) => {
             camera.set(key, selected.currentTarget.value);

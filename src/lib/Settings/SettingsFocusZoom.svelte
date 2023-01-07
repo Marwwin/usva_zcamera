@@ -1,36 +1,44 @@
 <script>
-    import ChoiseSetting from '../../common/ChoiseSetting.svelte';
-    import RangeSetting from '../../common/RangeSetting.svelte';
+    import { settings } from '../settings';
+    import SettingsWidget from './SettingsWidget.svelte';
 </script>
 
-<ChoiseSetting
-    name={'Focus'}
-    setting={{
-        key: 'focus',
-        opts: ['AF', 'MF'],
-        value: 'MF',
-    }} />
-<ChoiseSetting
-    name={'Lens Zoom'}
-    setting={{
-        key: 'lens_zoom',
-        opts: ['in', 'out'],
-        value: 'in',
-    }} />
-<ChoiseSetting
-name={'AF Lock'}
-setting={{
-    key: 'af_lock',
-    opts: ['lock', 'unlock'],
-    value: 'in',
-}} />
+<div>
+    <h3>Focus and Zoom</h3>
+    <div class="focus_zoom">
+        <SettingsWidget name={'Focus'} setting={settings.focus} />
+        <SettingsWidget name={'AF Mode'} setting={settings.af_mode} />
+        <SettingsWidget name={'MF Drive'} setting={settings.mf_drive} />
+        <SettingsWidget name={'Lens Zoom'} setting={settings.lens_zoom} />
+        <SettingsWidget name={'AF Lock'} setting={settings.af_lock} />
+        <SettingsWidget
+            name={'Lens Zoom Position'}
+            setting={settings.lens_zoom_pos} />
+        <SettingsWidget
+            name={'Lens Focus Position'}
+            setting={settings.lens_focus_pos} />
+        <SettingsWidget
+            name={'Lens Focus Speed'}
+            setting={settings.lens_focus_spd} />
+        <SettingsWidget name={'Continous AF'} setting={settings.caf} />
+        <SettingsWidget
+            name={'Continous AF Sensitivity'}
+            setting={settings.caf_sens} />
+        <SettingsWidget name={'Live CAF'} setting={settings.live_caf} />
+        <SettingsWidget name={'MF Mag'} setting={settings.mf_mag} />
+        <SettingsWidget
+            name={'Restore Lens Position'}
+            setting={settings.restore_lens_pos} />
+    </div>
+</div>
 
-<RangeSetting
-    name={'contrast'}
-    setting={{
-        key: 'contrast',
-        value: 52,
-        min: 0,
-        max: 100,
-        step: 1,
-    }} />
+<style>
+    .focus_zoom {
+        display: flex;
+        flex-wrap: wrap;
+        border: 1px solid whitesmoke;
+        border-radius: 1em;
+        width: 32em;
+        margin: 1em;
+    }
+</style>
