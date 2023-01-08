@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { settings } from '../settings';
     import SettingsWidget from './SettingsWidget.svelte';
 </script>

@@ -1,8 +1,8 @@
 <script lang="ts">
     import type { Settings } from '../../../types/settings';
 
-    export let setting: Settings;
     export let name: string;
+    export let setting: Settings;
     let { value } = setting;
 </script>
 

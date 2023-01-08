@@ -3,7 +3,7 @@
     import BooleanWidget from './BooleanWidget.svelte';
     import DropDownWidget from './DropDownWidget.svelte';
 
-    export let name;
+    export let name:string;
     export let setting: ChoiseSettings;
     const { opts} = setting;
 </script>

@@ -1,21 +1,20 @@
 <script lang="ts">
     import type { ChoiseSettings } from '../../../types/settings';
 
-    export let name;
+    export let name: string;
     export let setting: ChoiseSettings;
     const { key, opts, value } = setting;
 </script>
 
 <div class="widget">
     <h5>{name}</h5>
-    <input type="checkbox" id={`switch_${key}`}
-    class="checkbox" />
+    <input type="checkbox" id={`switch_${key}`} class="checkbox" />
     <label for={`switch_${key}`} class="toggle">
-    <p>{opts[0]} {opts[1]}</p>
+        <p>{opts[0]} {opts[1]}</p>
+    </label>
 </div>
 
 <style>
-
     /* toggle in label designing */
     .toggle {
         position: relative;

@@ -1,7 +1,8 @@
-<script>
-    import Button from '../common/Button.svelte'
-    import { camera } from '../E2Camera'
-    let result
+<script lang="ts">
+    import Button from '../common/Button.svelte';
+    import { camera } from '../E2Camera';
+
+    let result: Response;
 </script>
 
 <section>
@@ -9,7 +10,8 @@
     <Button
         text={'Current WorkMode'}
         onClick={async () => {
-            result = await camera.queryWorkMode()
+            result = await camera.queryWorkMode();
+            return result;
         }} />
     <Button text={'Record Mode'} onClick={() => camera.setRecordMode()} />
     <Button text={'Playback Mode'} onClick={() => camera.setPlaybackMode()} />

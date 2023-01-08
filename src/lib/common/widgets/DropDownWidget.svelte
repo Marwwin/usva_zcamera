@@ -2,7 +2,7 @@
     import { camera } from '../../E2Camera';
     import type { ChoiseSettings } from '../../../types/settings';
 
-    export let name;
+    export let name: string;
     export let setting: ChoiseSettings;
     const { key, opts, value } = setting;
 </script>

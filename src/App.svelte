@@ -6,22 +6,25 @@
     import WorkingMode from './lib/WorkingMode/WorkingMode.svelte';
     import { cameraSettings } from './store';
 
-    cameraSettings.update(async (previousState) => {
-        try {
-            return await camera.getAll(previousState);
-        } catch {
-            return previousState;
-        }
-    });
+    cameraSettings.update((previousState) => camera.getAll(previousState));
 </script>
 
 <main>
-    <div class="module__container" style="display: flex;">
-        <CameraInformation />
-        <PanTilt />
-        <WorkingMode />
-        <Settings />
-    </div>
+    {#if !import.meta.env.VITE_CAMERA}
+        <h1>ERROR: No Camera Ip Set</h1>
+        <p>
+            The ip needs to be declared as an enviroment variable VITE_CAMERA in
+            a ".env" file, the file should be located in the root folder
+        </p>
+        <p>Example .env file:<br /> VITE_CAMERA=123.123.123.123</p>
+    {:else}
+        <div class="module__container" style="display: flex;">
+            <CameraInformation />
+            <PanTilt />
+            <WorkingMode />
+            <Settings />
+        </div>
+    {/if}
 </main>
 
 <style>

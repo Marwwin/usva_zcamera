@@ -3,9 +3,8 @@
     import RangeWidget from '../common/widgets/RangeWidget.svelte';
     import StringWidget from '../common/widgets/StringWidget.svelte';
 
-    export let name;
+    export let name: string;
     export let setting: any;
-
 </script>
 
 {#if setting.type === 1}
@@ -19,13 +18,13 @@
 {/if}
 
 <style>
-  :global(.widget){
-    margin: 0.25em;
-    padding:0.35em;
-    border: 1px solid whitesmoke;
-    border-radius: 10%;
-  }
-  :global(.widget h5){
-    margin:0.2em
-  }
+    :global(.widget) {
+        margin: 0.25em;
+        padding: 0.35em;
+        border: 1px solid whitesmoke;
+        border-radius: 10%;
+    }
+    :global(.widget h5) {
+        margin: 0.2em;
+    }
 </style>

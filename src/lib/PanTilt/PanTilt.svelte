@@ -2,6 +2,7 @@
     import { camera } from '../E2Camera'
     import Button from '../common/Button.svelte'
     import PanTiltSpeedInput from './PanTiltSpeedInput.svelte'
+    
     let speed: number = 0
 </script>
 

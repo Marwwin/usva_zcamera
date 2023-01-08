@@ -2,8 +2,8 @@
     import { camera } from '../../E2Camera';
     import type { RangeSettings } from '../../../types/settings';
     
-    export let setting: RangeSettings;
     export let name: string;
+    export let setting: RangeSettings;
     let { value, min, max, key, step } = setting;
 </script>
 
