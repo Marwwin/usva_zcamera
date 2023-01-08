@@ -1,6 +1,7 @@
 <script lang="ts">
     import CameraInformation from './lib/CameraInformation/CameraInformation.svelte';
     import { camera } from './lib/E2Camera';
+    import Histogram from './lib/Histogram/Histogram.svelte';
     import PanTilt from './lib/PanTilt/PanTilt.svelte';
     import Settings from './lib/Settings/Settings.svelte';
     import WorkingMode from './lib/WorkingMode/WorkingMode.svelte';
@@ -19,10 +20,11 @@
         <p>Example .env file:<br /> VITE_CAMERA=123.123.123.123</p>
     {:else}
         <div class="module__container" style="display: flex;">
-            <CameraInformation />
-            <PanTilt />
-            <WorkingMode />
-            <Settings />
+            <!--<CameraInformation />-->
+            <!--<PanTilt />-->
+            <!--<WorkingMode />-->
+            <!--<Settings />-->
+            <Histogram />
         </div>
     {/if}
 </main>
