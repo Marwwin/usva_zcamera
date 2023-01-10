@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { Bar } from 'svelte-chartjs';
     import {
         Chart,
@@ -9,7 +9,7 @@
         CategoryScale,
         LinearScale,
     } from 'chart.js';
-    // import { data } from './data.js';
+    import { createChartData } from './imageToChart';
 
     Chart.register(
         Title,
@@ -21,6 +21,14 @@
     );
 
     const options = {
+        plugins: {
+            legend: {
+                display: false,
+            },
+            title: {
+                display: false,
+            },
+        },
         scales: {
             x: {
                 stacked: true,
@@ -33,68 +41,25 @@
             },
         },
     };
-    let data = undefined;
+    let imgData = undefined;
 
-    // @ts-ignore
     const img = new Image(300, 150);
     img.onload = () => {
-        console.log('load');
-        const canvas = document.getElementById('canvas');
-        // @ts-ignore
+        const canvas = <HTMLCanvasElement>document.getElementById('image');
         const ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0);
-        const colors = {
-            red: Array(256).fill(0),
-            green: Array(256).fill(0),
-            blue: Array(256).fill(0),
-            luma: Array(256).fill(0),
-        };
-        const imgData = ctx.getImageData(0, 0, img.width, img.height).data;
-        for (let i = 0; i < imgData.length; i += 4) {
-            colors.red[imgData[i]] += 1;
-            colors.green[imgData[i + 1]] += 1;
-            colors.blue[imgData[i + 2]] += 1;
-
-            const gray = Math.round(
-                0.299 * imgData[i] +
-                    0.587 * imgData[i + 1] +
-                    0.114 * imgData[i + 2],
-            );
-            colors.luma[gray] += 1;
-        }
-        console.log(imgData);
-        data = {
-            type: 'bar',
-            labels: Array(256)
-                .fill(null)
-                .map((_, i) => i),
-            datasets: [
-                {
-                    label: 'red',
-                    data: colors.red,
-                    backgroundColor: ['rgba(255, 0,0,0.3)'],
-                },
-                {
-                    label: 'green',
-                    data: colors.green,
-                    backgroundColor: ['rgba(0, 255,0,0.3)'],
-                },
-                {
-                    label: 'blue',
-                    data: colors.blue,
-                    backgroundColor: ['rgba(0, 0,255,0.3)'],
-                },
-            ],
-        };
+        imgData = ctx.getImageData(0, 0, img.width, img.height).data;
     };
     img.src = 'test.jpeg';
-
-    const normalize = (val, max, min) => (val - min) / (max - min);
 </script>
 
 <div>
-    <canvas id="canvas" />
-    {#if data != undefined}
-        <Bar width={800} height={500} {data} {options} />
+    <canvas id="image" />
+    {#if imgData != undefined}
+        <Bar
+            width={500}
+            height={400}
+            data={createChartData(imgData)}
+            {options} />
     {/if}
 </div>

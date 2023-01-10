@@ -1,4 +1,3 @@
-const CAMERA_IP = new URL(`http://${import.meta.env.VITE_CAMERA}`).href;
 export const camera = {
     getInformation: async () => await fetcher(`info`),
     getSession: async () => await fetcher(`ctrl/session`),
@@ -81,8 +80,10 @@ export const camera = {
 };
 
 async function fetcher(endPoint) {
+    const CAMERA_IP = new URL(`http://${import.meta.env.VITE_CAMERA}`).href;
     return await fetch(`${CAMERA_IP}${endPoint}`);
 }
+
 function toHex(number) {
     return number.toString(16);
 }
