@@ -10,6 +10,7 @@
         LinearScale,
     } from 'chart.js';
     import { createChartData } from './imageToChart';
+    export let imgData;
 
     Chart.register(
         Title,
@@ -41,25 +42,8 @@
             },
         },
     };
-    let imgData = undefined;
-
-    const img = new Image(300, 150);
-    img.onload = () => {
-        const canvas = <HTMLCanvasElement>document.getElementById('image');
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0);
-        imgData = ctx.getImageData(0, 0, img.width, img.height).data;
-    };
-    img.src = 'test.jpeg';
 </script>
 
-<div>
-    <canvas id="image" />
-    {#if imgData != undefined}
-        <Bar
-            width={500}
-            height={400}
-            data={createChartData(imgData)}
-            {options} />
-    {/if}
-</div>
+{#if imgData != undefined}
+    <Bar width={500} height={400} data={createChartData(imgData)} {options} />
+{/if}

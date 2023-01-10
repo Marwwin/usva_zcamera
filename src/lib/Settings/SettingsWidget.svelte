@@ -5,16 +5,24 @@
 
     export let name: string;
     export let setting: any;
+    
+    const { type, ro } = setting;
+
+    function isReadonly(type: number, ro: number) {
+        return ro === 1 || type === 3;
+    }
+
+    function isChoiseWidget(type: number) {
+        return type === 1;
+    }
 </script>
 
-{#if setting.type === 1}
-    <ChoiseWidget {name} {setting} />
-{/if}
-{#if setting.type === 2}
-    <RangeWidget {name} {setting} />
-{/if}
-{#if setting.type === 3}
+{#if isReadonly(type, ro)}
     <StringWidget {name} {setting} />
+{:else if isChoiseWidget(type)}
+    <ChoiseWidget {name} {setting} />
+{:else}
+    <RangeWidget {name} {setting} />
 {/if}
 
 <style>

@@ -3,12 +3,18 @@
     import Error from './lib/common/Error.svelte';
     import { camera } from './lib/E2Camera';
     import Histogram from './lib/Histogram/Histogram.svelte';
+    import ImageTemp from './lib/Histogram/ImageTemp.svelte';
     import PanTilt from './lib/PanTilt/PanTilt.svelte';
     import Settings from './lib/Settings/Settings.svelte';
     import WorkingMode from './lib/WorkingMode/WorkingMode.svelte';
     import { cameraSettings } from './store';
-    
-    cameraSettings.update((previousState) => camera.getAll(previousState));
+
+    //@ts-ignore
+    cameraSettings.update(async (prev) => {
+        const data = await camera.getAll(prev);
+        console.log('setting Store', data);
+        return data;
+    });
 </script>
 
 <main>
@@ -24,7 +30,7 @@
             <PanTilt />
             <WorkingMode />
             <Settings />
-            <Histogram />
+            <ImageTemp />
         </div>
     {/if}
 </main>

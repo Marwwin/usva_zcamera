@@ -8,8 +8,8 @@
 
 <div class="widget">
     <h5>{name}</h5>
-    <input type="checkbox" id={`switch_${key}`} class="checkbox" />
-    <label for={`switch_${key}`} class="toggle">
+    <input type="checkbox" id={`toggle_${key}`} class="checkbox" />
+    <label for={`toggle_${key}`} class="toggle">
         <p>{opts[0]} {opts[1]}</p>
     </label>
 </div>

@@ -745,7 +745,6 @@ export const settings = {
         opts: ['Speed', 'Angle'],
         all: [],
     },
-    dual_iso: { code: -1, desc: 'Key is not supported', msg: '' },
     ae_freeze: {
         code: 0,
         desc: 'string',
@@ -1381,7 +1380,6 @@ export const settings = {
         ],
         all: [],
     },
-    drive_mode: { code: -1, desc: '', msg: '' },
     photo_tl_interval: {
         code: 0,
         desc: 'string',

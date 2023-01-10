@@ -1,3 +1,6 @@
+import { prevent_default } from 'svelte/internal';
+import { cameraSettings } from '../store';
+
 export const camera = {
     getInformation: async () => await fetcher(`info`),
     getSession: async () => await fetcher(`ctrl/session`),
@@ -43,7 +46,7 @@ export const camera = {
     setTimeCodeCurrentTime: async () =>
         await fetcher(`ctrl/tc?action=current_time`),
     setTimeCodeReset: async () => await fetcher(`ctrl/tc?action=reset`),
-    setTimeCodeManual: async (timeCode) =>
+    setTimeCodeManual: async (timeCode: string) =>
         await fetcher(`ctrl/tc?action=set&tc=${timeCode}`),
 
     ///////////////////////
@@ -54,30 +57,45 @@ export const camera = {
     clearSEttings: async () => await fetcher(`ctrl/set?action=clear`),
     shutdown: async () => await fetcher(`ctrl/shutdown`),
     reboot: async () => await fetcher(`ctrl/reboot`),
-    setCameraId: async (cameraId) =>
+    setCameraId: async (cameraId: string) =>
         await fetcher(`ctrl/set?camera_id=${cameraId}`),
 
     ///////////////////////
     // Get Set
     ///////////////////////
 
-    set: async (key: string, value: string) =>
-        await fetcher(`ctrl/set?${key}=${value}`),
-    get: async (key: string) => await fetcher(`ctrl/get?k=${key}`),
-    getAll: (cameraSettings: Record<string, unknown>) => {
-        const result = {};
-        Object.keys(cameraSettings).forEach(async (key) => {
-            try {
-                const data = await fetcher(`ctrl/get?k=${key}`);
-                const json = await data.json();
-                result[key] = json;
-            } catch {
-                result[key] = cameraSettings[key];
-            }
-        });
-        return result;
+    set: async (key: string, value: string) => {
+        console.log('setting', key, value);
+
+        const data = await fetcher(`ctrl/set?${key}=${value}`);
+
+        const newValue = await camera.get(key);
+        console.log(newValue);
+        cameraSettings.setValue(key, newValue.value);
+        return await data.json();
     },
+    get: async (key: string) => {
+        const data = await fetcher(`ctrl/get?k=${key}`);
+        return await data.json();
+    },
+    getAll: async (cameraSettings: Record<string, unknown>) =>
+        await fetchAllSettings(cameraSettings),
 };
+
+async function fetchAllSettings(settings: Record<string, unknown>) {
+    console.log('fetching All', settings);
+    const result: Record<string, unknown> = {};
+    for (const key of Object.keys(settings)) {
+        try {
+            const data = await fetcher(`ctrl/get?k=${key}`);
+            const json = await data.json();
+            result[key] = json;
+        } catch {
+            result[key] = settings[key];
+        }
+    }
+    return result;
+}
 
 async function fetcher(endPoint) {
     const CAMERA_IP = new URL(`http://${import.meta.env.VITE_CAMERA}`).href;

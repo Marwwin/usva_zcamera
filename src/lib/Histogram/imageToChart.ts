@@ -2,7 +2,7 @@ export function createChartData(imageData) {
     const colors = imageDataToRGB(imageData);
     return {
         type: 'bar',
-        labels: createLabels(),
+        labels: createLabel(),
         datasets: [
             {
                 label: 'red',
@@ -30,12 +30,12 @@ function imageDataToRGB(imageData: Uint8ClampedArray) {
         colors.green[imageData[i + 1]] += 1;
         colors.blue[imageData[i + 2]] += 1;
 
-        const gray = Math.round(
+        const grayPixelValue = Math.round(
             0.299 * imageData[i] +
                 0.587 * imageData[i + 1] +
                 0.114 * imageData[i + 2],
         );
-        colors.luma[gray] += 1;
+        colors.luma[grayPixelValue] += 1;
     }
     return colors;
 }
@@ -49,7 +49,7 @@ function createRGBColors() {
     };
 }
 
-function createLabels() {
+function createLabel() {
     return Array(256)
         .fill(null)
         .map((_, i) => i);

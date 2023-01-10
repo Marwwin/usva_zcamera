@@ -20,15 +20,16 @@
         <SettingsWidget
             name={'Lens Focus Speed'}
             setting={settings.lens_focus_spd} />
+            <SettingsWidget
+            name={'Restore Lens Position'}
+            setting={settings.restore_lens_pos} />
         <SettingsWidget name={'Continous AF'} setting={settings.caf} />
         <SettingsWidget
             name={'Continous AF Sensitivity'}
             setting={settings.caf_sens} />
         <SettingsWidget name={'Live CAF'} setting={settings.live_caf} />
         <SettingsWidget name={'MF Mag'} setting={settings.mf_mag} />
-        <SettingsWidget
-            name={'Restore Lens Position'}
-            setting={settings.restore_lens_pos} />
+
     </div>
 </div>
 
