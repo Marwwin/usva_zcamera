@@ -2,19 +2,23 @@
     import CameraInformation from './lib/CameraInformation/CameraInformation.svelte';
     import Error from './lib/common/Error.svelte';
     import { camera } from './lib/E2Camera';
+    import ErrorCameraIp from './lib/Errors/ErrorCameraIp.svelte';
+    import FocusWidget from './lib/FocusWidget/FocusWidget.svelte';
     import Histogram from './lib/Histogram/Histogram.svelte';
     import ImageTemp from './lib/Histogram/ImageTemp.svelte';
     import PanTilt from './lib/PanTilt/PanTilt.svelte';
     import { list } from './lib/registeredSettings';
     import Settings from './lib/Settings/Settings.svelte';
+    import VideoStream from './lib/VideoStream/VideoStream.svelte';
     import WorkingMode from './lib/WorkingMode/WorkingMode.svelte';
+    import ZoomWidget from './lib/ZoomWidget/ZoomWidget.svelte';
     import { cameraSettings } from './store';
 
     let done = false;
     async function setSettings() {
         for (const setting of list) {
             const result = await camera.get(setting.key);
-            cameraSettings.setValue(setting.key, result);
+            cameraSettings.setEntry(setting.key, result);
         }
         done = true;
     }
@@ -22,27 +26,27 @@
 </script>
 
 <main>
-    {#if done}
+    <!--  {#if done}
         {#each list as setting}
             {$cameraSettings[setting.key].key}
             {$cameraSettings[setting.key].value}
         {/each}
-    {/if}
-
-    {#if !import.meta.env.VITE_CAMERA}
-        <Error
-            header={'No Camera Ip Set'}
-            text={`The ip needs to be declared as the enviroment variable VITE_CAMERA in
-    a ".env" file, the file should be located in the root folder
-    Example:VITE_CAMERA=123.123.123.123`} />
-    {:else}
-        <div class="module__container" style="display: flex;">
-            <!-- <CameraInformation />-->
-            <!-- <PanTilt />-->
-            <!-- <WorkingMode />-->
-            <Settings />
-            <!-- <ImageTemp />-->
-        </div>
+    {/if}-->
+    {#if done}
+        {#if !import.meta.env.VITE_CAMERA}
+            <ErrorCameraIp />
+        {:else}
+            <div class="module__container" style="display: flex;">
+                <VideoStream />
+                <ZoomWidget />
+                <FocusWidget />
+                <!-- <CameraInformation />-->
+                <!-- <PanTilt />-->
+                <!-- <WorkingMode />-->
+                <!-- <Settings />-->
+                <!-- <ImageTemp />-->
+            </div>
+        {/if}
     {/if}
 </main>
 

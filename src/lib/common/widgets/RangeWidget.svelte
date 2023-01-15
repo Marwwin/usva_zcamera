@@ -1,15 +1,13 @@
 <script lang="ts">
     import { camera } from '../../E2Camera';
-    import type { RangeSettings } from '../../../types/settings';
+    import type { RangeSettings, Settings } from '../../../types/settings';
     import { cameraSettings } from '../../../store';
 
     export let name: string;
-    export let setting: RangeSettings;
+    export let setting: Settings;
 
-    let { value, min, max, key, step } = setting;
-    cameraSettings.subscribe((v) => {
-        console.log(v);
-    });
+    let { value, min, max, key, step } = <RangeSettings>setting;
+    $: c = value;
 </script>
 
 <div class="widget">
@@ -29,5 +27,5 @@
         {max}
         {step}
         {value} />
-    <div>{value}</div>
+    <slot />
 </div>
