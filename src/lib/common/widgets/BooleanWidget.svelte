@@ -1,8 +1,8 @@
 <script lang="ts">
-    import type { ChoiseSettings } from '../../../types/settings';
+    import type { ChoiseSettings, Settings } from '../../../types/settings';
 
     export let name: string;
-    export let setting: ChoiseSettings;
+    export let setting: Settings;
     const { key, opts, value } = setting;
 </script>
 

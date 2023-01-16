@@ -4,6 +4,10 @@ export interface Settings {
     key?: string;
     type?: number;
     ro?: number;
+    opts?: string[];
+    min?: number;
+    max?: number;
+    step?: number;
     value: string | number;
 }
 

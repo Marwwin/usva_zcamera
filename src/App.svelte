@@ -10,6 +10,7 @@
     import { list } from './lib/registeredSettings';
     import Settings from './lib/Settings/Settings.svelte';
     import VideoStream from './lib/VideoStream/VideoStream.svelte';
+    import ExposureSettings from './lib/Widgets/ExposureSettings/ExposureSettings.svelte';
     import WorkingMode from './lib/WorkingMode/WorkingMode.svelte';
     import ZoomWidget from './lib/ZoomWidget/ZoomWidget.svelte';
     import { cameraSettings } from './store';
@@ -26,17 +27,12 @@
 </script>
 
 <main>
-    <!--  {#if done}
-        {#each list as setting}
-            {$cameraSettings[setting.key].key}
-            {$cameraSettings[setting.key].value}
-        {/each}
-    {/if}-->
     {#if done}
         {#if !import.meta.env.VITE_CAMERA}
             <ErrorCameraIp />
         {:else}
             <div class="module__container" style="display: flex;">
+                <ExposureSettings />
                 <VideoStream />
                 <ZoomWidget />
                 <FocusWidget />

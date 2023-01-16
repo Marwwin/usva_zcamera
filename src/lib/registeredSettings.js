@@ -5,6 +5,10 @@ export const list = [
     settings.mf_drive,
     settings.lens_zoom,
     settings.lens_focus_pos,
+    settings.iris,
+    settings.iso,
+    settings.shutter_angle,
+    settings.mwb
 ];
 
 export const registeredSettings = Object.fromEntries(
