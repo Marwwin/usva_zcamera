@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import { camera } from '../E2Camera';
+    
 
     let canvas;
 
@@ -31,6 +32,12 @@
     function normalize(n: number, max: number) {
         return (n / max) * 1000;
     }
+
+    const ws = new WebSocket("ws://localhost:2000/api/stream");
+
+    ws.onmessage = ((e)=>{
+        console.log(e);
+    })
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -40,13 +47,7 @@
     id="img"
     src={`http://${import.meta.env.VITE_CAMERA}/mjpeg_stream`} />
 
-    <embed type="application/x-vlc-plugin"
-      name="video"
-      autoplay="yes"
-      loop="no"
-      width="600"
-      height="400"
-      target="rtsp://192.168.1.117/live_stream"/>
+
    
     <!--
 <canvas
