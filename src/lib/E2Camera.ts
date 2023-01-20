@@ -1,4 +1,3 @@
-import { prevent_default } from 'svelte/internal';
 import { cameraSettings } from '../store';
 
 export const camera = {
@@ -64,7 +63,7 @@ export const camera = {
     // AF
     ///////////////////////
 
-    setROI: async (x:number, y:number) =>
+    setROI: async (x: number, y: number) =>
         await fetcher(`ctrl/af?action=update_roi_center&x=${x}&y=${y}`),
 
     ///////////////////////
@@ -72,12 +71,10 @@ export const camera = {
     ///////////////////////
 
     set: async (key: string, value: string) => {
-        console.log('setting', key, value);
-
         const data = await fetcher(`ctrl/set?${key}=${value}`);
 
         const newValue = await camera.get(key);
-        console.log(newValue);
+        console.log('setting', { key, value, newValue });
         cameraSettings.setValue(key, newValue.value);
         return await data.json();
     },
@@ -90,7 +87,6 @@ export const camera = {
 };
 
 async function fetchAllSettings(settings: Record<string, unknown>) {
-    console.log('fetching All', settings);
     const result: Record<string, unknown> = {};
     for (const key of Object.keys(settings)) {
         try {

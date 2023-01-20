@@ -3,6 +3,13 @@
 </script>
 
 <div>
-  <input type="range" name="speed" id="" min="0" max="63" bind:value={speed} />
-  <div>Speed: {speed}</div>
+  <input orient="vertical" type="range" name="speed" id="" min="0" max="63" bind:value={speed} />
 </div>
+
+<style>
+  input{
+    -webkit-appearance: slider-vertical;
+    appearance: slider-vertical;
+    height: 11em;
+  }
+</style>

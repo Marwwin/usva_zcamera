@@ -5,12 +5,12 @@
 
     export let name: string;
     export let setting: Settings;
-
+    export let horisontal: boolean = false;
     let { value, min, max, key, step } = <RangeSettings>setting;
     $: c = value;
 </script>
 
-<div class="widget">
+<div class={`widget${horisontal ? ' horisontal' : ''}`}>
     <h5>{name}</h5>
     <input
         on:change={async (selected) => {
@@ -29,3 +29,10 @@
         {value} />
     <slot />
 </div>
+
+<style>
+    .horisontal {
+        display: flex;
+        height: min-content;
+    }
+</style>

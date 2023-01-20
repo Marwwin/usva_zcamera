@@ -3,7 +3,7 @@
     import Error from './lib/common/Error.svelte';
     import { camera } from './lib/E2Camera';
     import ErrorCameraIp from './lib/Errors/ErrorCameraIp.svelte';
-    import FocusWidget from './lib/FocusWidget/FocusWidget.svelte';
+    import FocusWidget from './lib/Widgets/FocusWidget/FocusWidget.svelte';
     import Histogram from './lib/Histogram/Histogram.svelte';
     import ImageTemp from './lib/Histogram/ImageTemp.svelte';
     import PanTilt from './lib/PanTilt/PanTilt.svelte';
@@ -12,8 +12,9 @@
     import VideoStream from './lib/VideoStream/VideoStream.svelte';
     import ExposureSettings from './lib/Widgets/ExposureSettings/ExposureSettings.svelte';
     import WorkingMode from './lib/WorkingMode/WorkingMode.svelte';
-    import ZoomWidget from './lib/ZoomWidget/ZoomWidget.svelte';
+    import ZoomWidget from './lib/Widgets/ZoomWidget/ZoomWidget.svelte';
     import { cameraSettings } from './store';
+    import ImageSettings from './lib/Widgets/ImageSettings/ImageSettings.svelte';
 
     let done = false;
     async function setSettings() {
@@ -31,13 +32,15 @@
         {#if !import.meta.env.VITE_CAMERA}
             <ErrorCameraIp />
         {:else}
-            <div class="module__container" style="display: flex;">
+            <div class="module__container">
                 <ExposureSettings />
                 <VideoStream />
                 <ZoomWidget />
-                <FocusWidget />
-                <!-- <CameraInformation />-->
-                <!-- <PanTilt />-->
+                <PanTilt />
+                <ImageSettings/>
+                <!-- <CameraInformation />
+                <!-- <FocusWidget />-->
+                 
                 <!-- <WorkingMode />-->
                 <!-- <Settings />-->
                 <!-- <ImageTemp />-->
@@ -47,6 +50,10 @@
 </main>
 
 <style>
+    .module__container{
+        display: flex;
+        flex-direction: column;
+    }
     :global(section) {
         padding: 1em;
     }

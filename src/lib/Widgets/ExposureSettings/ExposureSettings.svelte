@@ -3,23 +3,37 @@
     import { cameraSettings } from '../../../store';
     import ChoiseWidget from '../../common/widgets/ChoiseWidget.svelte';
     import RangeWidget from '../../common/widgets/RangeWidget.svelte';
+    import DropDownWidget from '../../common/widgets/DropDownWidget.svelte';
 </script>
 
-<div>
-    <ChoiseWidget name="F" setting={$cameraSettings[settings.iris]}>
+<div id="exposure">
+    <DropDownWidget name="F" setting={$cameraSettings[settings.iris]} horisontal>
         {$cameraSettings[settings.iris].value}
-    </ChoiseWidget>
-    <ChoiseWidget name="ISO" setting={$cameraSettings[settings.iso]}>
+    </DropDownWidget>
+    <DropDownWidget name="ISO" setting={$cameraSettings[settings.iso]} horisontal>
         {$cameraSettings[settings.iso].value}
-    </ChoiseWidget>
-    <ChoiseWidget
+    </DropDownWidget>
+    <DropDownWidget
         name="Shutter Angle"
-        setting={$cameraSettings[settings.shutter_angle]}>
+        setting={$cameraSettings[settings.shutter_angle]}
+        horisontal>
         {$cameraSettings[settings.shutter_angle].value}
-    </ChoiseWidget>
-    <RangeWidget
-        name="K"
-        setting={$cameraSettings[settings.mwb]}>
+    </DropDownWidget>
+    <RangeWidget name="K" setting={$cameraSettings[settings.mwb]} horisontal>
         {$cameraSettings[settings.mwb].value}
     </RangeWidget>
 </div>
+
+<style>
+    #exposure {
+        position: absolute;
+        display: flex;
+        width: 50vw;
+        justify-content: space-evenly;
+    }
+
+    #exposure :global(.widget) {
+        margin: 0;
+        padding: 0;
+    }
+</style>

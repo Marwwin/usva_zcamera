@@ -1,6 +1,6 @@
 <script lang="ts">
     import { settings } from '../../../camera_stuff/settings';
-    import SettingsWidget from './SettingsWidget.svelte';
+    import SettingsWidget from '../common/SettingsWidget.svelte';
 </script>
 
 <div>

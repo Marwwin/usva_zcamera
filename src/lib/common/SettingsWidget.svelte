@@ -1,7 +1,7 @@
 <script lang="ts">
-    import ChoiseWidget from '../common/widgets/ChoiseWidget.svelte';
-    import RangeWidget from '../common/widgets/RangeWidget.svelte';
-    import StringWidget from '../common/widgets/StringWidget.svelte';
+    import ChoiseWidget from './widgets/ChoiseWidget.svelte';
+    import RangeWidget from './widgets/RangeWidget.svelte';
+    import StringWidget from './widgets/StringWidget.svelte';
 
     export let name: string;
     export let setting: any;
@@ -29,8 +29,6 @@
     :global(.widget) {
         margin: 0.25em;
         padding: 0.35em;
-        border: 1px solid whitesmoke;
-        border-radius: 10%;
     }
     :global(.widget h5) {
         margin: 0.2em;

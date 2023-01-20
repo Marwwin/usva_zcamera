@@ -8,7 +8,10 @@ export const list = [
     settings.iris,
     settings.iso,
     settings.shutter_angle,
-    settings.mwb
+    settings.mwb,
+    settings.lut,
+    settings.movvfr,
+    settings.rec_fps
 ];
 
 export const registeredSettings = Object.fromEntries(
