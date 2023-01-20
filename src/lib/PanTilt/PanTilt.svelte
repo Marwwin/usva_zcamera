@@ -34,7 +34,7 @@
 <style>
     #panTilt {
         position: absolute;
-        top: 22vw;
+        top: 37vh;
         display:flex;
     }
 </style>

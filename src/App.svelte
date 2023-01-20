@@ -15,6 +15,8 @@
     import ZoomWidget from './lib/Widgets/ZoomWidget/ZoomWidget.svelte';
     import { cameraSettings } from './store';
     import ImageSettings from './lib/Widgets/ImageSettings/ImageSettings.svelte';
+    import { Events } from './types/events';
+    import TempAndBattery from './lib/Widgets/TempAndBattery/TempAndBattery.svelte';
 
     let done = false;
     async function setSettings() {
@@ -25,6 +27,26 @@
         done = true;
     }
     setSettings();
+
+    const ws = new WebSocket(`ws://${import.meta.env.VITE_CAMERA}:81/`);
+
+    ws.onopen = () => {
+        cameraSettings.setEntry('temp', { value: 0 });
+        cameraSettings.setEntry('battery_voltage', { value: 0 });
+    };
+    ws.onmessage = (e: any) => {
+        const { what, value, key = '' } = JSON.parse(e.data);
+
+        if (what === Events.TEMP_UPDATE) {
+            console.log('updateTemp');
+            cameraSettings.setValue('temp', value);
+        }
+        if (what === Events.CONFIG_CHANGED)
+            if (key === 'battery_voltage') {
+                cameraSettings.setValue(key, value);
+            }
+        if (what !== 'RecUpdateDur') console.log(JSON.parse(e.data));
+    };
 </script>
 
 <main>
@@ -34,13 +56,14 @@
         {:else}
             <div class="module__container">
                 <ExposureSettings />
+                <TempAndBattery />
                 <VideoStream />
                 <ZoomWidget />
                 <PanTilt />
-                <ImageSettings/>
+                <ImageSettings />
                 <!-- <CameraInformation />
                 <!-- <FocusWidget />-->
-                 
+
                 <!-- <WorkingMode />-->
                 <!-- <Settings />-->
                 <!-- <ImageTemp />-->
@@ -50,7 +73,7 @@
 </main>
 
 <style>
-    .module__container{
+    .module__container {
         display: flex;
         flex-direction: column;
     }

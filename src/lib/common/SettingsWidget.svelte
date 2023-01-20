@@ -18,7 +18,7 @@
 </script>
 
 {#if isReadonly(type, ro)}
-    <StringWidget {name} {setting} />
+    <StringWidget {name} value={setting.value} />
 {:else if isChoiseWidget(type)}
     <ChoiseWidget {name} {setting} />
 {:else}

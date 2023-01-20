@@ -40,7 +40,15 @@
     id="img"
     src={`http://${import.meta.env.VITE_CAMERA}/mjpeg_stream`} />
 
-<!--
+    <embed type="application/x-vlc-plugin"
+      name="video"
+      autoplay="yes"
+      loop="no"
+      width="600"
+      height="400"
+      target="rtsp://192.168.1.117/live_stream"/>
+   
+    <!--
 <canvas
     width="1600px;"
     height="1200px;"

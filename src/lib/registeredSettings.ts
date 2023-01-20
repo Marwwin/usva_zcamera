@@ -11,7 +11,10 @@ export const list = [
     settings.mwb,
     settings.lut,
     settings.movvfr,
-    settings.rec_fps
+    settings.resolution,
+    settings.video_encoder,
+    settings.audio_output_gain,
+    settings.battery,
 ];
 
 export const registeredSettings = Object.fromEntries(

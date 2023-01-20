@@ -6,8 +6,10 @@
 
 <div id="image_settings">
     <DropDownWidget setting={$cameraSettings[settings.movvfr]} />
+    <DropDownWidget setting={$cameraSettings[settings.resolution]} />
+    <DropDownWidget setting={$cameraSettings[settings.video_encoder]} />
     <DropDownWidget setting={$cameraSettings[settings.lut]} />
-    <DropDownWidget setting={$cameraSettings[settings.rec_fps]} />
+
 </div>
 
 <style>
