@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { registeredSettings as settings } from '../registeredSettings';
+    import {  settings } from '../cameraSettings';
     import SettingsWidget from '../common/SettingsWidget.svelte';
 </script>
 

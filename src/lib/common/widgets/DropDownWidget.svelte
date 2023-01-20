@@ -1,11 +1,14 @@
 <script lang="ts">
-    import { camera } from '../../E2Camera';
+    import { camera } from '../../CameraAPI';
     import type { ChoiseSettings, Settings } from '../../../types/settings';
 
     export let name: string = null;
     export let setting: Settings;
     export let horisontal: boolean = false;
+    console.log(setting);
     const { key, opts, value } = setting;
+    console.log(key, value, opts)
+
 </script>
 
 <div class={`widget${horisontal ? ' horisontal' : ''}`}>

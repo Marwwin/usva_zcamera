@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    import { camera } from '../E2Camera';
-    
+    import { camera } from '../CameraAPI';
+    import { loadPlayer } from "rtsp-relay/browser"
 
     let canvas;
 
@@ -33,30 +33,35 @@
         return (n / max) * 1000;
     }
 
-    const ws = new WebSocket("ws://localhost:2000/api/stream");
-
-    ws.onmessage = ((e)=>{
-        console.log(e);
+    onMount(()=>{
+        loadPlayer({
+    url: 'ws://localhost:2000/api/stream/',
+    canvas: canvas,
+  });
     })
+
+   // const ws = new WebSocket("ws://localhost:2000/api/stream");
+//
+   // ws.onmessage = ((e)=>{
+   //     console.log(e);
+   // })
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-missing-attribute -->
-<img
+<!--<img
     on:click={(e) => onClick(e)}
     id="img"
     src={`http://${import.meta.env.VITE_CAMERA}/mjpeg_stream`} />
 
-
+-->
    
-    <!--
+    
 <canvas
-    width="1600px;"
-    height="1200px;"
     on:click={(e) => onClick(e)}
     bind:this={canvas}
-    id="stream" />
-    -->
+  />
+
 <style>
     img {
         width: 100vw;

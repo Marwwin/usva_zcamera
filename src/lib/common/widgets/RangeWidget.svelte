@@ -1,13 +1,12 @@
 <script lang="ts">
-    import { camera } from '../../E2Camera';
+    import { camera } from '../../CameraAPI';
     import type { RangeSettings, Settings } from '../../../types/settings';
     import { cameraSettings } from '../../../store';
-
     export let name: string;
     export let setting: Settings;
     export let horisontal: boolean = false;
     let { value, min, max, key, step } = <RangeSettings>setting;
-    $: c = value;
+        console.log(key)
 </script>
 
 <div class={`widget${horisontal ? ' horisontal' : ''}`}>

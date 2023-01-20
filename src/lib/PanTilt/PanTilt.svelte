@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { camera } from '../E2Camera';
+    import { camera } from '../CameraAPI';
     import Button from '../common/Button.svelte';
     import PanTiltSpeedInput from './PanTiltSpeedInput.svelte';
 

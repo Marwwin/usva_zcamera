@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { registeredSettings as settings } from '../../registeredSettings';
+    import {  settings } from '../../cameraSettings';
     import { cameraSettings } from '../../../store';
     import ChoiseWidget from '../../common/widgets/ChoiseWidget.svelte';
     import RangeWidget from '../../common/widgets/RangeWidget.svelte';

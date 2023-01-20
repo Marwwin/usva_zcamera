@@ -1,6 +1,6 @@
 <script lang="ts">
     import Button from '../common/Button.svelte';
-    import { camera } from '../E2Camera';
+    import { camera } from '../CameraAPI';
     let result: any | null = null;
 </script>
 
