@@ -6,9 +6,8 @@
     import FocusWidget from './lib/Widgets/FocusWidget/FocusWidget.svelte';
     import Histogram from './lib/Histogram/Histogram.svelte';
     import ImageTemp from './lib/Histogram/ImageTemp.svelte';
-    import PanTilt from './lib/PanTilt/PanTilt.svelte';
+    import PanTilt from './lib/Widgets/PanTilt/PanTilt.svelte';
     import { settings } from './lib/cameraSettings';
-    import Settings from './lib/Settings/Settings.svelte';
     import VideoStream from './lib/VideoStream/VideoStream.svelte';
     import ExposureSettings from './lib/Widgets/ExposureSettings/ExposureSettings.svelte';
     import WorkingMode from './lib/WorkingMode/WorkingMode.svelte';
@@ -19,35 +18,25 @@
     import TempAndBattery from './lib/Widgets/TempAndBattery/TempAndBattery.svelte';
 
     let done = false;
+    const additionalSettings = [
+        "temp",
+        "battery_voltage"
+    ]
     async function setSettings() {
-        for (const setting of Object.keys(settings)) {
-            const result = await camera.get(setting);
-            console.log(setting,result)
-            cameraSettings.set(setting, result);
+        for (const key of Object.keys(settings)) {
+            const result = await camera.get(key);
+            cameraSettings.setEntry(result);
+        }
+        for (const key of additionalSettings){
+            cameraSettings.setEntry({ key: key, value: 0 });
         }
         done = true;
     }
     setSettings();
 
-    const ws = new WebSocket(`ws://${import.meta.env.VITE_CAMERA}:81/`);
+    
 
-    ws.onopen = () => {
-        cameraSettings.set('temp', { value: 0 });
-        cameraSettings.set('battery_voltage', { value: 0 });
-    };
-    ws.onmessage = (e: any) => {
-        const { what, value, key = '' } = JSON.parse(e.data);
-
-        if (what === Events.TEMP_UPDATE) {
-            console.log('updateTemp');
-            cameraSettings.setValue('temp', value);
-        }
-        if (what === Events.CONFIG_CHANGED)
-            if (key === 'battery_voltage') {
-                cameraSettings.setValue(key, value);
-            }
-        if (what !== 'RecUpdateDur') console.log(JSON.parse(e.data));
-    };
+    $: apiErrors = $cameraSettings["api_errors"]
 </script>
 
 <main>

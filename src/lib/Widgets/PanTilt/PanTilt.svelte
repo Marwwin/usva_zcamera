@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { camera } from '../CameraAPI';
-    import Button from '../common/Button.svelte';
+    import { camera } from '../../CameraAPI';
+    import Button from '../../common/Button.svelte';
     import PanTiltSpeedInput from './PanTiltSpeedInput.svelte';
 
     let speed: number = 0;

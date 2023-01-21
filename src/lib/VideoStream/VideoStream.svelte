@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import { camera } from '../CameraAPI';
-    import { loadPlayer } from "rtsp-relay/browser"
+    import { loadPlayer } from 'rtsp-relay/browser';
 
     let canvas;
 
@@ -33,34 +33,36 @@
         return (n / max) * 1000;
     }
 
-    onMount(()=>{
+    onMount(() => {
+        let a: AudioContext = null;
         loadPlayer({
-    url: 'ws://localhost:2000/api/stream/',
-    canvas: canvas,
-  });
-    })
+            url: 'ws://localhost:2000/api/stream/',
+            canvas: canvas,
+            onAudioDecode: (e) => {
+                if (a === null) {
+                    a = e.destination.context;
+                    a.resume();
+                }
+            },
+        });
+    });
 
-   // const ws = new WebSocket("ws://localhost:2000/api/stream");
-//
-   // ws.onmessage = ((e)=>{
-   //     console.log(e);
-   // })
+    // const ws = new WebSocket("ws://localhost:2000/api/stream");
+    //
+    // ws.onmessage = ((e)=>{
+    //     console.log(e);
+    // })
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-missing-attribute -->
-<!--<img
+<!-- <img
     on:click={(e) => onClick(e)}
     id="img"
     src={`http://${import.meta.env.VITE_CAMERA}/mjpeg_stream`} />
-
 -->
-   
-    
-<canvas
-    on:click={(e) => onClick(e)}
-    bind:this={canvas}
-  />
+
+<canvas on:click={(e) => onClick(e)} bind:this={canvas} />
 
 <style>
     img {

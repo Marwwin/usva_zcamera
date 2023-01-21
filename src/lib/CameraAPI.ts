@@ -1,4 +1,5 @@
 import { cameraSettings } from '../store';
+import type { Settings } from '../types/settings';
 
 export const camera = {
     getInformation: async () => await fetcher(`info`),
@@ -70,15 +71,11 @@ export const camera = {
     // Get Set
     ///////////////////////
 
-    set: async (key: string, value: string) => {
+    set: async (key: string, value: string):Promise<Settings> => {
         const data = await fetcher(`ctrl/set?${key}=${value}`);
-
-        const newValue = await camera.get(key);
-        console.log('setting', { key, value, newValue });
-        cameraSettings.setValue(key, newValue.value);
         return await data.json();
     },
-    get: async (key: string) => {
+    get: async (key: string):Promise<Settings> => {
         const data = await fetcher(`ctrl/get?k=${key}`);
         return await data.json();
     },
@@ -100,7 +97,7 @@ async function fetchAllSettings(settings: Record<string, unknown>) {
     return result;
 }
 
-async function fetcher(endPoint) {
+async function fetcher(endPoint:string) {
     const CAMERA_IP = new URL(`http://${import.meta.env.VITE_CAMERA}`).href;
     return await fetch(`${CAMERA_IP}${endPoint}`);
 }

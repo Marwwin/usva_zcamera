@@ -4,6 +4,8 @@
     import ChoiseWidget from '../../common/widgets/ChoiseWidget.svelte';
     import RangeWidget from '../../common/widgets/RangeWidget.svelte';
     import DropDownWidget from '../../common/widgets/DropDownWidget.svelte';
+    console.log("iris",$cameraSettings["iris"], settings.iris,$cameraSettings[settings.iris]);
+    
 </script>
 
 <div id="exposure">
