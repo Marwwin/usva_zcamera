@@ -71,11 +71,13 @@ export const camera = {
     // Get Set
     ///////////////////////
 
-    set: async (key: string, value: string):Promise<Settings> => {
+    set: async (key: string, value: string): Promise<Settings> => {
         const data = await fetcher(`ctrl/set?${key}=${value}`);
-        return await data.json();
+        const json = await data.json();
+        if (json.code !== 0) cameraSettings.addError(json);
+        return json;
     },
-    get: async (key: string):Promise<Settings> => {
+    get: async (key: string): Promise<Settings> => {
         const data = await fetcher(`ctrl/get?k=${key}`);
         return await data.json();
     },
@@ -97,7 +99,7 @@ async function fetchAllSettings(settings: Record<string, unknown>) {
     return result;
 }
 
-async function fetcher(endPoint:string) {
+async function fetcher(endPoint: string) {
     const CAMERA_IP = new URL(`http://${import.meta.env.VITE_CAMERA}`).href;
     return await fetch(`${CAMERA_IP}${endPoint}`);
 }

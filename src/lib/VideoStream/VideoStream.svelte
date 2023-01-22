@@ -3,7 +3,7 @@
     import { camera } from '../CameraAPI';
     import { loadPlayer } from 'rtsp-relay/browser';
 
-    let canvas;
+    let canvas: HTMLCanvasElement;
 
     function draw() {
         const img = document.getElementById('img');
@@ -38,6 +38,8 @@
         loadPlayer({
             url: 'ws://localhost:2000/api/stream/',
             canvas: canvas,
+            onPlay: (e)=> console.log(e),
+            onSourceEstablished: (e)=> console.log(e),
             onAudioDecode: (e) => {
                 if (a === null) {
                     a = e.destination.context;
@@ -46,6 +48,8 @@
             },
         });
     });
+
+    console.log(canvas)
 
     // const ws = new WebSocket("ws://localhost:2000/api/stream");
     //

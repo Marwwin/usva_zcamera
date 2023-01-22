@@ -6,6 +6,11 @@ E2:
   ✔ Add PanTilt @started(23-01-20 08:45) @done(23-01-20 12:29) @lasted(3h44m1s)
   ✔ Add Lut @started(23-01-20 12:29) @done(23-01-20 13:16) @lasted(47m6s)
   ☐ Study websocket event thing
+  ☐ Fix floatingError
+  ☐ Fix EventsManager
+  ☐ Write tests for widgets
+  ☐ Write tests for Errors
+  ☐ Write test for rest
 
 
 

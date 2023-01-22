@@ -1,8 +1,14 @@
 import { writable, type Writable } from 'svelte/store';
 import type { Settings } from './types/settings';
+import type { CameraError } from './types/error';
 
-const createStore = () => {
-    const store: Writable<Record<string, Settings>> = writable({});
+interface CameraSettings {
+    [key: string]: Settings | CameraError[];
+    errors: CameraError[];
+}
+
+const createCameraSettingsStore = () => {
+    const store: Writable<CameraSettings> = writable({errors: [],});
     return {
         subscribe: store.subscribe,
         list: () => {
@@ -15,11 +21,23 @@ const createStore = () => {
                 return { ...current, [settings.key]: settings };
             }),
         setValue: (key: string, value: string | number) =>
-            store.update((current) => {                
-                current[key] = { ...current[key], value}
-                return { ...current,  };
+            store.update((current) => {
+                current[key] = { ...current[key], value };
+                return { ...current };
             }),
+        addError: (error) => {
+            store.update((current) => {
+                const errors = current.errors;
+                errors.push(error);
+                return { ...current, errors };
+            });
+        },
+        clearErrors: () => {
+            store.update((current) => {
+                return { ...current, errors: [] };
+            });
+        },
     };
 };
 
-export const cameraSettings = createStore();
+export const cameraSettings = createCameraSettingsStore();

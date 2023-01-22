@@ -1,24 +1,16 @@
 <script lang="ts">
-    import { cameraSettings } from "../../store";
-    import { Events } from "../../types/events";
+    import { cameraSettings } from '../../store';
+    import { Events, type CameraEvent } from '../../types/events';
 
+    const ws = new WebSocket(`ws://${import.meta.env.VITE_CAMERA}:81/`);
 
-const ws = new WebSocket(`ws://${import.meta.env.VITE_CAMERA}:81/`);
-
-ws.onopen = () => {
-
-};
-ws.onmessage = (e: any) => {
-    const { what, value, key = '' } = JSON.parse(e.data);
-
-    if (what === 'RecUpdateDur') return;
-    if (what === Events.TEMP_UPDATE) {
-        cameraSettings.setValue('temp', value);
-    }
-    if (what === Events.CONFIG_CHANGED)
-        if (key === 'battery_voltage') {
-            cameraSettings.setValue(key, value);
-        }
-};
-
+    ws.onopen = () => {};
+    ws.onmessage = ({ data }: MessageEvent<string>) => {
+        const { what, value, key = '' }: CameraEvent = JSON.parse(data);
+        
+        if (what === 'RecUpdateDur') return;
+        console.log({what,value,key});
+        if (what === Events.TEMP_UPDATE) cameraSettings.setValue('temp', value);
+        if (what === Events.CONFIG_CHANGED) cameraSettings.setValue(key, value);
+    };
 </script>
