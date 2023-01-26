@@ -1,21 +1,17 @@
 <script lang="ts">
-    export let error;
-    const { msg, key } = error;
 </script>
 
 <article>
-    <h1>ERROR: {key}</h1>
-    <p>
-        {msg}
-    </p>
+    <slot />
 </article>
 
 <style>
     article {
-        width: 100px;
-        height: 50px;
         position: fixed;
-        top: calc(50% - 25px);
-        left: calc(50% - 50px);
+        top: calc(50% - 15vh);
+        left: calc(50% - 20vw);
+        border: 1px solid wheat;
+        border-radius: 4em;
+        padding: 4em;
     }
 </style>

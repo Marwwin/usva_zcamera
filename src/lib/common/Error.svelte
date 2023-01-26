@@ -5,7 +5,7 @@
     const { header, text } = error;
 </script>
 
-<h1>ERROR: {header}</h1>
+<h2>ERROR: {header}</h2>
 <p>
     {text}
 </p>

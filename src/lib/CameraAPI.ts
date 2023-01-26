@@ -2,7 +2,11 @@ import { cameraSettings } from '../store';
 import type { Settings } from '../types/settings';
 
 export const camera = {
-    getInformation: async () => await fetcher(`info`),
+    ping: async () => {
+        const data = await fetcher(`info`).catch(e => new Error(e));
+        if (data instanceof Error) return false;
+        return true;
+    },
     getSession: async () => await fetcher(`ctrl/session`),
     quitSession: async () => await fetcher(`ctrl/session?action=quit`),
     syncCamera: async () =>

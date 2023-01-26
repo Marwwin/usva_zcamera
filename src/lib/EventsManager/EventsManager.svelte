@@ -9,7 +9,7 @@
         const { what, value, key = '' }: CameraEvent = JSON.parse(data);
         
         if (what === 'RecUpdateDur') return;
-        console.log({what,value,key});
+        console.log(data);
         if (what === Events.TEMP_UPDATE) cameraSettings.setValue('temp', value);
         if (what === Events.CONFIG_CHANGED) cameraSettings.setValue(key, value);
     };
