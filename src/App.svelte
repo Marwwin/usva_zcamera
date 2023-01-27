@@ -5,6 +5,7 @@
     import FloatingError from './lib/common/FloatingError.svelte';
     import MainScreen from './lib/MainScreen.svelte';
     import { onMount } from 'svelte';
+    import EventsManager from './lib/EventsManager/EventsManager.svelte';
 
     let isCameraOk = false;
     let loading = true;
@@ -18,6 +19,7 @@
     {#if loading}
         Loading...
     {:else if isCameraOk}
+    <EventsManager/>
         <MainScreen />
     {:else}
         <FloatingError>
@@ -27,10 +29,5 @@
 </main>
 
 <style>
-    :global(section) {
-        padding: 1em;
-    }
-    :global(button) {
-        margin: 0.3em;
-    }
+   
 </style>

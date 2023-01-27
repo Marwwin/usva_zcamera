@@ -70,6 +70,8 @@ export const camera = {
 
     setROI: async (x: number, y: number) =>
         await fetcher(`ctrl/af?action=update_roi_center&x=${x}&y=${y}`),
+       // await fetcher(`ctrl/af?action=update_roi&x=${x}&y=${y}&w=100&h=100`),
+
 
     ///////////////////////
     // Get Set

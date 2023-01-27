@@ -5,10 +5,7 @@
     export let name: string = null;
     export let setting: Settings;
     export let horisontal: boolean = false;
-    console.log({setting, name});
     const { key, opts, value } = setting;
-    console.log(key, value, opts)
-
 </script>
 
 <div class={`widget${horisontal ? ' horisontal' : ''}`}>
