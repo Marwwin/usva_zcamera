@@ -20,10 +20,11 @@
     {#if loading}
         Loading...
     {:else if isCameraOk}
+    
     <EventsManager/>
 
-       <!-- <MainScreen /> -->
-       <Gallery />
+    <MainScreen />
+     <Gallery /> 
     {:else}
         <FloatingError>
             <Error error={Errors.NO_CONNECTION} />

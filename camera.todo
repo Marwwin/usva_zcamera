@@ -6,14 +6,21 @@ E2:
   ✔ Add PanTilt @started(23-01-20 08:45) @done(23-01-20 12:29) @lasted(3h44m1s)
   ✔ Add Lut @started(23-01-20 12:29) @done(23-01-20 13:16) @lasted(47m6s)
   ☐ Study websocket event thing
-  ☐ Fix floatingError
-  ☐ Fix EventsManager
+  ✔ Fix floatingError @done(23-01-30 20:34)
+  ✔ Fix EventsManager @done(23-01-30 20:34)
   ☐ Write tests for widgets
   ☐ Write tests for Errors
   ☐ Write test for rest
-  ☐ Add ROI
-
-
+  ✔ Add ROI @done(23-01-27 21:44)
+  ☐ Write Peaking
+  ☐ Fix booleanwidget onclick
+  ☐ Fix booleanwidget name (see peaking)
+  ☐ Fix Settings type
+  ☐ Create multiple stores for camersettings,errors etc?
+  ☐ Record Time
+        
+  ☐ Fix Rotation  transform: rotate(180deg);
+ 
 
   Names
 
@@ -146,3 +153,4 @@ E2:
     },
     photo_tl_num: { name: 'Photo Timelapse Num', key: 'photo_tl_num' },
 }
+

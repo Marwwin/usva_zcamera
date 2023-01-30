@@ -18,6 +18,8 @@
     import { Errors } from './Errors/Errors';
     import FloatingError from './common/FloatingError.svelte';
     import Gallery from './Gallery/Gallery.svelte';
+    import Buttons from './Widgets/Buttons/Buttons.svelte';
+    import RecordingTime from './Widgets/RecordingTime/RecordingTime.svelte';
 
     let done = false;
     const additionalSettings = ['temp', 'battery_voltage'];
@@ -53,6 +55,8 @@
                 <ZoomWidget />
                 <PanTilt />
                 <ImageSettings />
+                <Buttons />
+                <RecordingTime />
                 <!-- <CameraInformation />
               <!-- <FocusWidget />-->
 
@@ -64,15 +68,13 @@
     {/if}
 </section>
 
-
-
 <style>
     .module__container {
         display: flex;
         flex-direction: column;
     }
     :global(section) {
-        padding: 1em;
+        padding: 0em;
     }
     :global(button) {
         margin: 0.3em;

@@ -7,7 +7,7 @@
 
 <div class="file">
     {#await camera.getThumbnailURL(folder, file) then url}
-        {#await camera.downloadFile(folder, file) then downloadurl}
+        {#await camera.getDownloadFileURL(folder, file) then downloadurl}
             <a href={downloadurl} download>
                 <img
                     on:click={() => camera.downloadFile(folder, file)}
@@ -20,7 +20,7 @@
         {#await camera.getFileInfo(folder, file) then info}
             Width: {info.w}
             Height: {info.h}
-            Duration: {info.dur}
+            Duration: {Math.round(info.dur / info.vts)}s
         {/await}
     </p>
 </div>

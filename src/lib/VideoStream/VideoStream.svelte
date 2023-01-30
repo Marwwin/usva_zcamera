@@ -61,9 +61,16 @@
     }
 
     onMount(async () => {
-       // img.src = 'http://192.168.1.117/mjpeg_stream?' + Date.now();
-        const s = await fetch("http://192.168.1.117/mjpeg_stream")
-        console.log(s);
+       img.src = 'http://192.168.1.117/mjpeg_stream?' + Date.now();
+       // const s = await fetch("http://192.168.1.117/mjpeg_stream")
+       // console.log(s);
+       setTimeout(()=> {
+        canvas.width = img.width;
+        canvas.height = img.height;
+       },2000)
+       img.onload = function (){
+
+       }
         //img.onload = function () {
         //    console.log("ad")
         //        const context = canvas.getContext('2d');

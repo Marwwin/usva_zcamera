@@ -4,10 +4,10 @@
     export let name: string;
     export let setting: Settings;
     const { key, opts, value } = setting;
+    console.log(setting)
 </script>
 
 <div class="widget">
-    <h5>{name}</h5>
     <input type="checkbox" id={`toggle_${key}`} class="checkbox" />
     <label for={`toggle_${key}`} class="toggle">
         <p>{opts[0]} {opts[1]}</p>

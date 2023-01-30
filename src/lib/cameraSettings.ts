@@ -15,6 +15,9 @@ export const registered = [
     allSettings.resolution,
     allSettings.video_encoder,
     allSettings.audio_output_gain,
+    allSettings.focus,
+    allSettings.assitool_peak_onoff,
+    allSettings.rotation,
 ];
 
 export const settings = Object.fromEntries(

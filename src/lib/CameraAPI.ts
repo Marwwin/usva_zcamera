@@ -27,7 +27,11 @@ export const camera = {
 
     startRecord: async () => await fetcher(`ctrl/rec?action=start`),
     stopRecord: async () => await fetcher(`ctrl/rec?action=stop`),
-    getRemainingRecordTime: async () => await fetcher(`ctrl/rec?action=remain`),
+    getRemainingRecordTime: async () => {
+        const data = await fetcher(`ctrl/rec?action=remain`);
+        const json = await data.json();
+        return json.msg;
+    },
 
     ///////////////////////
     // Pan&Tilt
@@ -81,24 +85,33 @@ export const camera = {
         const json = await data.json();
         return json.files;
     },
-    getFiles: async (folder:string) => {
+    getFiles: async (folder: string) => {
         const data = await fetcher(`DCIM/${folder}`);
         const json = await data.json();
         return json.files;
     },
-    getThumbnailURL: async (folder:string, file:string) => {
-        const data = await fetcher(`DCIM/${folder}/${file}?act=thm`);
-        return data.url;
-    },
-    getFileInfo: async (folder:string, file:string) => {
+
+    getFileInfo: async (folder: string, file: string) => {
         const data = await fetcher(`DCIM/${folder}/${file}?act=info`);
         const json = await data.json();
         return json;
     },
-    downloadFile: async (folder:string, file:string) => {
-        const data = await fetcher(`DCIM/${folder}/${file}`);
-        console.log(data);
-        return data.url;
+    getThumbnailURL: async (folder: string, file: string) => {
+        return new URL(
+            `http://${
+                import.meta.env.VITE_CAMERA
+            }/DCIM/${folder}/${file}?act=thm`,
+        ).href;
+        //  const data = await fetcher(`DCIM/${folder}/${file}?act=thm`);
+        //  return data.url;
+    },
+    getDownloadFileURL: async (folder: string, file: string) => {
+        return new URL(
+            `http://${import.meta.env.VITE_CAMERA}/DCIM/${folder}/${file}`,
+        ).href;
+        //const data = await fetcher(`DCIM/${folder}/${file}`);
+        //console.log(data);
+        //return data.url;
     },
     ///////////////////////
     // Get Set

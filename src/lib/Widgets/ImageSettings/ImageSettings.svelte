@@ -18,7 +18,7 @@
     #image_settings {
         position: absolute;
         top: 95vh;
-        left: 70vw;
+        left: 66vw;
         display: flex;
 
     }
