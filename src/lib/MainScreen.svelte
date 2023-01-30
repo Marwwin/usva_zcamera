@@ -17,6 +17,7 @@
     import TempAndBattery from './Widgets/TempAndBattery/TempAndBattery.svelte';
     import { Errors } from './Errors/Errors';
     import FloatingError from './common/FloatingError.svelte';
+    import Gallery from './Gallery/Gallery.svelte';
 
     let done = false;
     const additionalSettings = ['temp', 'battery_voltage'];
@@ -62,6 +63,8 @@
         {/if}
     {/if}
 </section>
+
+
 
 <style>
     .module__container {

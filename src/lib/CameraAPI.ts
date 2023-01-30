@@ -3,7 +3,7 @@ import type { Settings } from '../types/settings';
 
 export const camera = {
     ping: async () => {
-        const data = await fetcher(`info`).catch(e => new Error(e));
+        const data = await fetcher(`info`).catch((e) => new Error(e));
         if (data instanceof Error) return false;
         return true;
     },
@@ -70,9 +70,36 @@ export const camera = {
 
     setROI: async (x: number, y: number) =>
         await fetcher(`ctrl/af?action=update_roi_center&x=${x}&y=${y}`),
-       // await fetcher(`ctrl/af?action=update_roi&x=${x}&y=${y}&w=100&h=100`),
+    // await fetcher(`ctrl/af?action=update_roi&x=${x}&y=${y}&w=100&h=100`),
 
+    ///////////////////////
+    // Get Files
+    ///////////////////////
 
+    getFolders: async () => {
+        const data = await fetcher('DCIM/');
+        const json = await data.json();
+        return json.files;
+    },
+    getFiles: async (folder:string) => {
+        const data = await fetcher(`DCIM/${folder}`);
+        const json = await data.json();
+        return json.files;
+    },
+    getThumbnailURL: async (folder:string, file:string) => {
+        const data = await fetcher(`DCIM/${folder}/${file}?act=thm`);
+        return data.url;
+    },
+    getFileInfo: async (folder:string, file:string) => {
+        const data = await fetcher(`DCIM/${folder}/${file}?act=info`);
+        const json = await data.json();
+        return json;
+    },
+    downloadFile: async (folder:string, file:string) => {
+        const data = await fetcher(`DCIM/${folder}/${file}`);
+        console.log(data);
+        return data.url;
+    },
     ///////////////////////
     // Get Set
     ///////////////////////

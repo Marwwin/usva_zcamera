@@ -1,25 +1,26 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import { camera } from '../CameraAPI';
-    import { loadPlayer } from 'rtsp-relay/browser';
+
+    const ROI_LINE = 25;
+    const ROI_WIDTH = 192;
+    const ROI_HEIGHT = 108;
+    const HISTOGRAM_UPDATE_INTERVAL = 2000;
 
     let canvas: HTMLCanvasElement;
-    let img;
-    const roiLineLength = 25;
-    const ROIWidth = 192;
-    const ROIHeight = 108;
+    let img: HTMLImageElement;
 
     function onClick(e) {
         const y = e.clientY - e.target.offsetTop;
         const x = e.clientX - e.target.offsetLeft;
 
-        const width = e.target.width;
-        const height = e.target.height;
+        const imgWidth = e.target.width;
+        const imgHeight = e.target.height;
 
-
-        console.log(normalize(x, width), normalize(y, height));
         drawRoi(x, y);
-        camera.setROI(normalize(x, width), normalize(y, height));
+
+        console.log(normalize(x, imgWidth), normalize(y, imgHeight));
+        camera.setROI(normalize(x, imgWidth), normalize(y, imgHeight));
     }
 
     function normalize(n: number, max: number) {
@@ -28,21 +29,21 @@
 
     function drawRoi(x, y) {
         clearCanvas();
-        const left = x - ROIWidth / 2;
-        const right = x + ROIWidth / 2;
-        const top = y - ROIHeight / 2;
-        const down = y + ROIHeight / 2;
-        drawLine({ x: left, y: top }, { x: left + roiLineLength, y: top });
-        drawLine({ x: left, y: top }, { x: left, y: top + roiLineLength });
+        const left = x - ROI_WIDTH / 2;
+        const right = x + ROI_WIDTH / 2;
+        const top = y - ROI_HEIGHT / 2;
+        const down = y + ROI_HEIGHT / 2;
+        drawLine({ x: left, y: top }, { x: left + ROI_LINE, y: top });
+        drawLine({ x: left, y: top }, { x: left, y: top + ROI_LINE });
 
-        drawLine({ x: right, y: top }, { x: right - roiLineLength, y: top });
-        drawLine({ x: right, y: top }, { x: right, y: top + roiLineLength });
+        drawLine({ x: right, y: top }, { x: right - ROI_LINE, y: top });
+        drawLine({ x: right, y: top }, { x: right, y: top + ROI_LINE });
 
-        drawLine({ x: right, y: down }, { x: right, y: down - roiLineLength });
-        drawLine({ x: right, y: down }, { x: right - roiLineLength, y: down });
+        drawLine({ x: right, y: down }, { x: right, y: down - ROI_LINE });
+        drawLine({ x: right, y: down }, { x: right - ROI_LINE, y: down });
 
-        drawLine({ x: left, y: down }, { x: left + roiLineLength, y: down });
-        drawLine({ x: left, y: down }, { x: left, y: down - roiLineLength });
+        drawLine({ x: left, y: down }, { x: left + ROI_LINE, y: down });
+        drawLine({ x: left, y: down }, { x: left, y: down - ROI_LINE });
     }
     function drawLine(start, end) {
         const context = canvas.getContext('2d');
@@ -59,21 +60,27 @@
         context.clearRect(0, 0, canvas.width, canvas.height);
     }
 
-    onMount(() => {
-        //let a: AudioContext = null;
-        //loadPlayer({
-        //    url: 'ws://localhost:2000/api/stream/',
-        //    canvas: canvas,
-        //    onPlay: (e) => console.log(e),
-        //    onSourceEstablished: (e) => console.log(e),
-        //    onAudioDecode: (e) => {
-        //        if (a === null) {
-        //            a = e.destination.context;
-        //            a.resume();
-        //        }
-        //    },
-        //});
+    onMount(async () => {
+       // img.src = 'http://192.168.1.117/mjpeg_stream?' + Date.now();
+        const s = await fetch("http://192.168.1.117/mjpeg_stream")
+        console.log(s);
+        //img.onload = function () {
+        //    console.log("ad")
+        //        const context = canvas.getContext('2d');
+        //        context.drawImage(img, 0, 0);
+        //        const data = context.getImageData(0,0,canvas.width,canvas.height);
+        //       // console.log(data);
+        //    };
+        //setInterval(function () {
+        //    img.src = 'http://192.168.1.117/mjpeg_stream?' + Date.now();
+        //    setTimeout(()=>{
+        //        const context = canvas.getContext('2d');
+        //        context.drawImage(img, 0, 0);
+        //        const data = context.getImageData(0,0,canvas.width,canvas.height);
+        //    },1000)
+        //}, HISTOGRAM_UPDATE_INTERVAL);
     });
+
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -82,7 +89,7 @@
     bind:this={img}
     on:click={(e) => onClick(e)}
     id="img"
-    src={`http://${import.meta.env.VITE_CAMERA}/mjpeg_stream`} />
+     />
 
 <canvas
     width={1385}

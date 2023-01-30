@@ -6,6 +6,7 @@
     import MainScreen from './lib/MainScreen.svelte';
     import { onMount } from 'svelte';
     import EventsManager from './lib/EventsManager/EventsManager.svelte';
+    import Gallery from './lib/Gallery/Gallery.svelte';
 
     let isCameraOk = false;
     let loading = true;
@@ -20,7 +21,9 @@
         Loading...
     {:else if isCameraOk}
     <EventsManager/>
-        <MainScreen />
+
+       <!-- <MainScreen /> -->
+       <Gallery />
     {:else}
         <FloatingError>
             <Error error={Errors.NO_CONNECTION} />
