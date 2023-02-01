@@ -13,7 +13,6 @@
     import ZoomWidget from './Widgets/ZoomWidget/ZoomWidget.svelte';
     import { cameraSettings } from '../store';
     import ImageSettings from './Widgets/ImageSettings/ImageSettings.svelte';
-    import { Events } from '../types/events';
     import TempAndBattery from './Widgets/TempAndBattery/TempAndBattery.svelte';
     import { Errors } from './Errors/Errors';
     import FloatingError from './common/FloatingError.svelte';
