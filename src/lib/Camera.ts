@@ -1,5 +1,4 @@
-import { cameraSettings } from '../store';
-import type { Settings } from '../types/settings';
+import type { Setting, SettingsKeys } from '../types/cameraApi';
 
 export const camera = {
     ping: async () => {
@@ -117,13 +116,13 @@ export const camera = {
     // Get Set
     ///////////////////////
 
-    set: async (key: string, value: string): Promise<Settings> => {
+    set: async (key: string, value: string): Promise<Setting> => {
         const data = await fetcher(`ctrl/set?${key}=${value}`);
         const json = await data.json();
-        if (json.code !== 0) cameraSettings.addError(json);
+       // if (json.code !== 0) cameraSettings.addError(json);
         return json;
     },
-    get: async (key: string): Promise<Settings> => {
+    get: async (key: string): Promise<Setting> => {
         const data = await fetcher(`ctrl/get?k=${key}`);
         return await data.json();
     },

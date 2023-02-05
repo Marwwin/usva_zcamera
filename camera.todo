@@ -14,11 +14,10 @@ E2:
   ✔ Add ROI @done(23-01-27 21:44)
   ☐ Write Peaking
   ☐ Fix booleanwidget onclick
-  ☐ Fix booleanwidget name (see peaking)
-  ☐ Fix Settings type
-  ☐ Create multiple stores for camersettings,errors etc?
-  ☐ Record Time
-        
+  ✔ Fix booleanwidget name (see peaking) @done(23-02-05 08:20)
+  ✔ Fix Settings type @done(23-02-05 08:20)
+  ✔ Create multiple stores for camersettings,errors etc? @done(23-02-05 08:20)
+  ☐ Record Time    
   ☐ Fix Rotation  transform: rotate(180deg);
  
 

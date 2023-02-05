@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { camera } from '../CameraAPI';
+    import { camera } from '../Camera';
 
     export let folder: string;
     export let file: string;
@@ -9,9 +9,7 @@
     {#await camera.getThumbnailURL(folder, file) then url}
         {#await camera.getDownloadFileURL(folder, file) then downloadurl}
             <a href={downloadurl} download>
-                <img
-                    on:click={() => camera.downloadFile(folder, file)}
-                    src={url} />
+                <img alt="A recorded video file" src={url} />
             </a>
         {/await}
     {/await}

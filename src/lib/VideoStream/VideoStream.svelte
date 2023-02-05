@@ -1,6 +1,6 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    import { camera } from '../CameraAPI';
+    import { camera } from '../Camera';
 
     const ROI_LINE = 25;
     const ROI_WIDTH = 192;

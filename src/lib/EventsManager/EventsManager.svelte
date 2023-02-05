@@ -6,7 +6,7 @@
 
     ws.onopen = () => {};
     ws.onmessage = ({ data }: MessageEvent<string>) => {
-        const { what, value, key = '' }: CameraEvent = JSON.parse(data);
+        const { what, value, key }: CameraEvent = JSON.parse(data);
         
         if (what === 'RecUpdateDur') return;
         console.log(data);

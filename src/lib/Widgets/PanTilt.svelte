@@ -1,7 +1,6 @@
 <script lang="ts">
-    import { camera } from '../../CameraAPI';
-    import Button from '../../common/Button.svelte';
-    import PanTiltSpeedInput from './PanTiltSpeedInput.svelte';
+    import { camera } from '../Camera';
+    import Button from '../common/Button.svelte';
 
     let speed: number = 0;
 </script>
@@ -27,14 +26,22 @@
             onClick={() => camera.tiltDown(speed)}
             onMouseUp={() => camera.stopPanTilt()} />
     </div>
-    <PanTiltSpeedInput {speed} />
-
-</div >
+    <div>
+        <input
+            orient="vertical"
+            type="range"
+            name="speed"
+            id=""
+            min="0"
+            max="63"
+            bind:value={speed} />
+    </div>
+</div>
 
 <style>
     #panTilt {
         position: absolute;
         top: 37vh;
-        display:flex;
+        display: flex;
     }
 </style>

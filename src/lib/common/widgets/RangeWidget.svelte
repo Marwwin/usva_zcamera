@@ -1,11 +1,10 @@
 <script lang="ts">
-    import { camera } from '../../CameraAPI';
-    import type { RangeSettings, Settings } from '../../../types/settings';
-    import { cameraSettings } from '../../../store';
+    import { camera } from '../../Camera';
+    import type { Setting } from '../../../types/cameraApi';
     export let name: string;
-    export let setting: Settings;
+    export let setting: Setting;
     export let horisontal: boolean = false;
-    let { value, min, max, key, step } = <RangeSettings>setting;
+    let { value, min, max, key, step } = setting;
         console.log(key)
 </script>
 

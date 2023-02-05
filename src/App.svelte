@@ -1,6 +1,6 @@
 <script lang="ts">
     import Error from './lib/common/Error.svelte';
-    import { camera } from './lib/CameraAPI';
+    import { camera } from './lib/Camera';
     import { Errors } from './lib/Errors/Errors';
     import FloatingError from './lib/common/FloatingError.svelte';
     import MainScreen from './lib/MainScreen.svelte';

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { camera } from '../../CameraAPI';
+    import { camera } from '../Camera';
 </script>
 
 <div id="zoom">

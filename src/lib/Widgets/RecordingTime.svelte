@@ -1,6 +1,6 @@
 <script>
 
-    import { camera } from "../../CameraAPI";
+    import { camera } from "../Camera";
 
 </script>
 <div id="record-time">

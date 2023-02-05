@@ -1,6 +1,6 @@
 <script lang="ts">
     import Button from '../common/Button.svelte';
-    import { camera } from '../CameraAPI';
+    import { camera } from '../Camera';
 
     let result: Response;
 </script>

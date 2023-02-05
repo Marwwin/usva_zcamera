@@ -1,10 +1,8 @@
 <script lang="ts">
-    import type { ChoiseSettings, Settings } from '../../../types/settings';
+    import type { Setting } from '../../../types/cameraApi';
 
-    export let name: string;
-    export let setting: Settings;
+    export let setting: Setting;
     const { key, opts, value } = setting;
-    console.log(setting)
 </script>
 
 <div class="widget">

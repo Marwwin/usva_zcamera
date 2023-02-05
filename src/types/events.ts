@@ -1,3 +1,5 @@
+import type { SettingsKeys, State } from "./cameraApi";
+
 export const Events = {
     TEMP_UPDATE: 'TempUpdate',
     CONFIG_CHANGED: 'ConfigChanged',
@@ -8,5 +10,5 @@ type EventsKeys = keyof typeof Events;
 export interface CameraEvent {
     what: typeof Events[EventsKeys];
     value: string | number;
-    key: string;
+    key: SettingsKeys | State;
 }

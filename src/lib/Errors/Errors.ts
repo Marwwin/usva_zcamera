@@ -1,4 +1,4 @@
-import { camera } from "../CameraAPI";
+import { camera } from "../Camera";
 
 export const Errors = {
     NO_CONNECTION: {

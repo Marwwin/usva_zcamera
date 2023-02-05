@@ -1,9 +1,9 @@
 <script lang="ts">
-    import { camera } from '../../CameraAPI';
-    import type { ChoiseSettings, Settings } from '../../../types/settings';
+    import { camera } from '../../Camera';
+    import type { Setting } from '../../../types/cameraApi';
 
     export let name: string = null;
-    export let setting: Settings;
+    export let setting: Setting;
     export let horisontal: boolean = false;
     const { key, opts, value } = setting;
 </script>

@@ -1,7 +1,6 @@
 <script lang="ts">
-    import {  settings } from '../../cameraSettings';
-    import { cameraSettings } from '../../../store';
-    import StringWidget from '../../common/widgets/StringWidget.svelte';
+    import { cameraSettings } from '../../store';
+    import StringWidget from '../common/widgets/StringWidget.svelte';
 
     function formatTemp(value:string | number):string{
       return `${value}°C`;
