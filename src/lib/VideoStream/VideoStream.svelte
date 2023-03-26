@@ -61,7 +61,7 @@
     }
 
     onMount(async () => {
-       img.src = 'http://10.98.33.1/mjpeg_stream?' + Date.now();
+       img.src = `http://${import.meta.env.VITE_CAMERA}/mjpeg_stream?${Date.now()}`;
        // const s = await fetch("http://192.168.1.117/mjpeg_stream")
        // console.log(s);
        setTimeout(()=> {
