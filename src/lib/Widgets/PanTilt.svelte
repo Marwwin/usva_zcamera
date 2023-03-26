@@ -27,6 +27,9 @@
             onMouseUp={() => camera.stopPanTilt()} />
     </div>
     <div>
+        <Button text={'stop'} onClick={() => camera.stopPanTilt()} />
+    </div>
+    <div>
         <input
             orient="vertical"
             type="range"

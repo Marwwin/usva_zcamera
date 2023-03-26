@@ -3,7 +3,7 @@ type Setting = Pick<
     'code' | 'desc' | 'key' | 'type' | 'ro' | 'value'
 > &
     Partial<Pick<ApiResponse, 'opts' | 'min' | 'max' | 'step' >>;
-interface ApiResponse {
+export interface ApiResponse {
     code: number;
     desc: string;
     msg: string;
@@ -131,7 +131,7 @@ const settingsKeys = {
     rotation: 'rotation',
 } as const;
 
-type SettingsKeys = keyof typeof settingsKeys;
+type SettingsKeys = Partial<keyof typeof settingsKeys>;
 
 export type { Setting, State, SettingsKeys };
 export { settingsKeys };

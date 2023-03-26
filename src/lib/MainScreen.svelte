@@ -11,21 +11,21 @@
     import Gallery from './Gallery/Gallery.svelte';
     import Buttons from './Widgets/Buttons.svelte';
     import RecordingTime from './Widgets/RecordingTime.svelte';
-
+    import Session from './Widgets/Session.svelte';
 </script>
 
 <section>
     {#if import.meta.env.VITE_CAMERA}
-        {#await cameraSettings.init() then }
+        {#await cameraSettings.init() then}
             <div class="module__container">
                 <ExposureSettings />
-                <TempAndBattery />
                 <VideoStream />
                 <ZoomWidget />
                 <PanTilt />
                 <ImageSettings />
                 <Buttons />
                 <RecordingTime />
+                <Session />
             </div>
         {/await}
     {:else}

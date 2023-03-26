@@ -3,18 +3,18 @@
 </script>
 
 <div id="zoom">
-    <div
+    <button
         class="zoom__button"
         on:mousedown={() => camera.set('lens_zoom', 'in')}
         on:mouseup={() => camera.set('lens_zoom', 'stop')}>
         T
-    </div>
-    <div
+    </button>
+    <button
         class="zoom__button"
         on:mousedown={() => camera.set('lens_zoom', 'out')}
         on:mouseup={() => camera.set('lens_zoom', 'stop')}>
         W
-    </div>
+    </button>
 </div>
 
 <style>

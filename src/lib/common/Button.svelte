@@ -7,13 +7,14 @@
 
 <div>
     <button
-        on:click={async () => {
+        on:mousedown={async () => {
             const data = await onClick();
             const json = await data.json();
             result = json;
             return json;
         }}
         on:mouseup={async () => {
+            console.log("onmouseup")
             await onMouseUp();
         }}>
         <span>{text}</span>

@@ -1,4 +1,4 @@
-import type { Setting, SettingsKeys } from '../types/cameraApi';
+import type { ApiResponse, Setting, SettingsKeys } from '../types/cameraApi';
 
 export const camera = {
     ping: async () => {
