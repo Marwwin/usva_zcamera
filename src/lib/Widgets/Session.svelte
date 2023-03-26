@@ -5,14 +5,14 @@
     import StringWidget from '../common/widgets/StringWidget.svelte';
 </script>
 
-<div id="">
+<div id="session">
     <Button text={"End Session"} onClick={()=> camera.quitSession()}></Button>
 </div>
 
 <style>
-    #temp_battery {
+    #session {
         display: flex;
         position: absolute;
-        left: 90vw;
+        left: 75vw;
     }
 </style>
