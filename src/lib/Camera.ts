@@ -1,4 +1,8 @@
-import type { ApiResponse, Setting, SettingsKeys } from '../types/cameraApi';
+import type { Setting } from '../types/cameraApi';
+
+const fetcher = createFetcher(
+    new URL(`http://${import.meta.env.VITE_CAMERA}`).href,
+);
 
 export const camera = {
     ping: async () => {
@@ -119,7 +123,7 @@ export const camera = {
     set: async (key: string, value: string): Promise<Setting> => {
         const data = await fetcher(`ctrl/set?${key}=${value}`);
         const json = await data.json();
-       // if (json.code !== 0) cameraSettings.addError(json);
+        // if (json.code !== 0) cameraSettings.addError(json);
         return json;
     },
     get: async (key: string): Promise<Setting> => {
@@ -144,9 +148,8 @@ async function fetchAllSettings(settings: Record<string, unknown>) {
     return result;
 }
 
-async function fetcher(endPoint: string) {
-    const CAMERA_IP = new URL(`http://${import.meta.env.VITE_CAMERA}`).href;
-    return await fetch(`${CAMERA_IP}${endPoint}`);
+function createFetcher(url: string) {
+    return async (endPoint: string) => await fetch(`${url}${endPoint}`);
 }
 
 function toHex(number) {
