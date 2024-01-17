@@ -1,12 +1,13 @@
 <script lang="ts">
-    import Error from './lib/common/Error.svelte';
-    import { camera } from './lib/Camera';
-    import { Errors } from './lib/Errors/Errors';
-    import FloatingError from './lib/common/FloatingError.svelte';
-    import MainScreen from './lib/MainScreen.svelte';
     import { onMount } from 'svelte';
+    import { camera } from './lib/Camera';
+
+    import MainScreen from './lib/MainScreen.svelte';
     import EventsManager from './lib/EventsManager/EventsManager.svelte';
     import Gallery from './lib/Gallery/Gallery.svelte';
+    import Error from './lib/common/Error.svelte';
+    import { Errors } from './lib/Errors/Errors';
+    import FloatingError from './lib/common/FloatingError.svelte';
 
     let isCameraOk = false;
     let loading = true;

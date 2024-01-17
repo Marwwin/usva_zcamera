@@ -137,13 +137,15 @@ export const camera = {
 async function fetchAllSettings(settings: Record<string, unknown>) {
     const result: Record<string, unknown> = {};
     for (const key of Object.keys(settings)) {
-        try {
-            const data = await fetcher(`ctrl/get?k=${key}`);
-            const json = await data.json();
-            result[key] = json;
-        } catch {
+        const data = await fetcher(`ctrl/get?k=${key}`).catch(
+            (e) => new Error(e),
+        );
+        if (data instanceof Error) {
             result[key] = settings[key];
+            continue;
         }
+        const json = await data.json();
+        result[key] = json;
     }
     return result;
 }
@@ -152,6 +154,6 @@ function createFetcher(url: string) {
     return async (endPoint: string) => await fetch(`${url}${endPoint}`);
 }
 
-function toHex(number) {
+function toHex(number: number) {
     return number.toString(16);
 }
