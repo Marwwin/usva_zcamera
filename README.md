@@ -2,8 +2,6 @@
 
 A webapp for controlling a Z Cam E2
 
-## What
-
 Uzva is built with Svelte. To get up a dev environment do
 
 `npm run dev`
